@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rushikesh_Properties</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact.css">
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar background h-nav">
+        <ul class="nav-list v-class">
+            <div class="logo"><img src="assets/watermark logo.jpg.png" alt="logo"></div>
+            <li><a href="./index.html">Home</a> </li>
+            <li><a href="./About.html">About-Us</a> </li>
+            <li><a href="./OurClients.html"> Our Clients</a> </li>
+            <li><a href="./Project.html">Projects</a></li>
+            <li><a href="./contact.html">Contact-Us</a> </li>
+        </ul>
+        <div class="humburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+    </nav>
+    <div class="eight">
+        <h1>Get In Touch..!!</h1>
+    </div>
+
+    <div class="contact-info">
+        <div class="box">
+            <div class="text">
+
+                <h3>Address</h3>
+                <p>Rushikesh Properties <br>
+                    Anjali-kunj,Dahanukar-A,<br>
+                    Behind Kothrud Stand,Kothrud, <br>
+                    Pune,Maharashtra-411038. </p> <br>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+
+                <h3>EMAIL</h3><br>
+                <p>Gmail: <a href="mailto:rushikeshproperties09@gmail.com"
+                        class="gmail-link">rushikeshproperties09@gmail.com</a></p> <br>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+
+                <div class="text">
+                    <h3>PHONE</h3><br>
+                    <a href="tel:+918329826136" (click)="onPhoneClick('8329826236')">Phone: 8329826136</a><br>
+                    <a href="tel:+919850023994" (click)="onPhoneClick('9850023994')">Phone: 9850023994</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="contact">
+
+        <h2>Contact Us..!!</h2>
+        <form id="contactForm">
+            <div class="input-box">
+                <div class="input-field">
+                    <input type="text" id="name" placeholder="Your name" class="item" autocomplete="off">
+                    <div class="error-txt" id="nameError">Name can't be blank..!!</div>
+                </div>
+                <div class="input-field">
+                    <input type="email" id="email" placeholder="Your Email-ID" class="item" autocomplete="off">
+                    <div class="error-txt" id="emailError">Email can't be blank..!!</div>
+                </div>
+            </div>
+            <div class="input-box">
+                <div class="input-field">
+                    <input type="text" id="phone" placeholder="Phone No." class="item" autocomplete="off">
+                    <div class="error-txt" id="phoneError">Phone No. can't be blank..!!</div>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="subject" placeholder="Subject" class="item" autocomplete="off">
+                    <div class="error-txt" id="subjectError">Subject can't be blank..!!</div>
+                </div>
+            </div>
+            <div class="textarea-field">
+                <textarea id="message" cols="30" rows="10" placeholder="How can we help you?" class="item"
+                    autocomplete="off"></textarea>
+                <div class="error-txt" id="messageError">Message can't be blank..!!</div>
+            </div>
+            <button type="submit">Send message</button>
+        </form>
+
+    </section>
+
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("3tk97eqUdsGbvhnzP"); // Replace with your EmailJS User ID
+
+            document.getElementById('contactForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Validate form fields
+                var name = document.getElementById('name');
+                var email = document.getElementById('email');
+                var phone = document.getElementById('phone');
+                var subject = document.getElementById('subject');
+                var message = document.getElementById('message');
+
+                var isValid = true;
+
+                // Reset errors
+                document.querySelectorAll('.error-txt').forEach(function (error) {
+                    error.style.display = 'none';
+                    error.previousElementSibling.classList.remove('error');
+                });
+
+                if (!name.value) {
+                    document.getElementById('nameError').style.display = 'block';
+                    name.classList.add('error');
+                    isValid = false;
+                }
+                if (!email.value) {
+                    document.getElementById('emailError').style.display = 'block';
+                    email.classList.add('error');
+                    isValid = false;
+                }
+                if (!phone.value) {
+                    document.getElementById('phoneError').style.display = 'block';
+                    phone.classList.add('error');
+                    isValid = false;
+                }
+                if (!subject.value) {
+                    document.getElementById('subjectError').style.display = 'block';
+                    subject.classList.add('error');
+                    isValid = false;
+                }
+                if (!message.value) {
+                    document.getElementById('messageError').style.display = 'block';
+                    message.classList.add('error');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    var templateParams = {
+                        name: name.value,
+                        email: email.value,
+                        phone: phone.value,
+                        subject: subject.value,
+                        message: message.value
+                    };
+
+                    emailjs.send('service_r25qbao', 'template_lj1rztr', templateParams)
+                        .then(function (response) {
+                            alert('Message sent successfully!');
+                            // Clear form fields
+                            document.getElementById('contactForm').reset();
+                        }, function (error) {
+                            alert('Failed to send message. Please try again later.');
+                        });
+                }
+            });
+        })();
+    </script>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.6634226528945!2d73.81003727465163!3d18.49889886983695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfc134eb7c8b%3A0xa7554ff6a13cfa14!2sAnjali%20Kunj%20-%20A%20Project%20by%20%E2%80%9CRavetkar%20Group%E2%80%9D!5e0!3m2!1sen!2sin!4v1721730934565!5m2!1sen!2sin"
+        width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <footer class="footer footer-back">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/RUSHIKESH PANDAV card.png" alt="Logo">
+                <!-- <p style= "margin-top:-81px ;margin-left:18px;">We are where you want to live</p> -->
+
+
+            </div>
+            <div class="header">
+                <p>Contact</p>
+            </div>
+            <div class="contact-details">
+
+
+                <p style="color: white">Gmail: <a style="color: white" href="mailto:rushikeshproperties09@gmail.com"
+                        class="gmail-link">rushikeshproperties09@gmail.com</a></p>
+
+                <p>Address: Rushikesh Properties <br>
+                    Anjali-kunj,Dahanukar-A,<br>
+                    Behind Kothrud Stand,Kothrud, <br>
+                    Pune,Maharashtra-411038.
+                </p>
+                <div class="instagram-logo">
+                    <a href="https://www.instagram.com/rushikeshpropertiespune/">
+                        <img src="assets/Instagram_logo.jpg" alt="Instagram">
+
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+
+    <div class="Copyright">
+        <p>Copyright &copy; 2024 Rushikesh Properties| | Designed & developed by VEDIKA</p>
+    </div>
+
+    <script src="contact.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
